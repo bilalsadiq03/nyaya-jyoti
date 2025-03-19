@@ -4,6 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import Link from "next/link"
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs"
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -16,6 +17,7 @@ const Header = () => {
             Nyaya Jyoti
           </Link>
         </motion.div>
+        
         <nav className="hidden md:flex space-x-8">
           {["About", "Features", "How It Works", "FAQs", "Contact"].map((item) => (
             <motion.a
@@ -29,6 +31,27 @@ const Header = () => {
             </motion.a>
           ))}
         </nav>
+
+        <SignedOut>
+            <SignInButton 
+              forceRedirectUrl="/dashboard"
+            >
+              <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className=" px-4 py-2 text-white border border-white rounded-lg hover:bg-white hover:text-blue-600 transition-colors"
+          >
+            <Link href="/sign-in">Login</Link>
+          </motion.button>
+            </SignInButton>
+          </SignedOut>
+
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+
+        
+
         <div className="md:hidden">
           <button onClick={() => setIsOpen(!isOpen)}>{isOpen ? <X /> : <Menu />}</button>
         </div>
@@ -44,7 +67,7 @@ const Header = () => {
             <a
               key={item}
               href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
-              className="block py-2 px-4 text-gray-600 hover:text-blue-600 transition-colors"
+              className="block py-2 px-4 text-gray-200 hover:text-blue-600 transition-colors"
               onClick={() => setIsOpen(false)}
             >
               {item}

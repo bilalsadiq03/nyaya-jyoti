@@ -1,6 +1,7 @@
 "use client"
 import { motion } from "framer-motion"
 import { FileText, Clock, Zap } from "lucide-react"
+import Link from "next/link"
 
 const Hero = () => {
   return (
@@ -14,13 +15,15 @@ const Hero = () => {
         >
           <h1 className="text-4xl md:text-6xl font-bold mb-6">Revolutionizing Legal Documentation in India</h1>
           <p className="text-xl md:text-2xl mb-8">Your 24/7 digital assistant for simplified legal paperwork</p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold text-lg shadow-lg"
-          >
-            Get Started
-          </motion.button>
+          <Link href="/documents">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold text-lg shadow-lg"
+            >
+              Get Started
+            </motion.button>
+          </Link>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
